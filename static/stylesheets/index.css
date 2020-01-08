@@ -1,4 +1,64 @@
+/* body {
+  background: #f3f1f2;
+  font-family: sans-serif;
+}
+
 #application {
-	margin: 20px;
-	height: 500px;
+	margin: 5vh;
+}
+
+#application .ql-snow.ql-toolbar {
+  display: block;
+  background: #eaecec;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+#application .ql-editor {
+  height: 18em;
+}
+
+#application .ql-container {
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  background: #fefcfc;
+} */
+html, body {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+#application {
+  height: 100%;
+  box-sizing: border-box;
+}
+.container {
+  height: 100%;
+  box-sizing: border-box;
+}
+.quill {
+  height: 100%;
+  box-sizing: border-box;
+  width: calc(100% - 300px);
+  float: left;
+}
+.ql-container {
+  box-sizing: border-box;
+  height: calc(100% - 42px);
+  overflow-y: scroll;
+}
+.ql-editor {
+  cursor: text;
+}
+.MuiListItem-root.Mui-selected {
+  background-color: #d4d8e8 !important;
+}
+.no-note-selected {
+  font-size: 48px;
+  position: absolute;
+  top: 50px;
+  left: calc(50% - 165px);
 }
