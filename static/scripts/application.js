@@ -1,6 +1,9 @@
 import React from "react";
-export default class App extends React.Component {
+import EditorComponent from "./editorComponent";
+export default class Application extends React.Component {
 	render() {
-		return <h1>Hello, World!</h1>;
+		return (
+			<EditorComponent/>
+		);
 	}
 }
