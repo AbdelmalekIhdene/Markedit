@@ -74,8 +74,7 @@ class Application extends React.Component {
 		+ currentDate.getSeconds() + " "
 		+ currentDate.getDate() + "/"
         + (currentDate.getMonth()+1)  + "/"
-        + currentDate.getFullYear()
-
+        + currentDate.getFullYear();
 		notes[id] = {...note, id};
 		this.setState({notes: notes});
 		console.log(notes);
@@ -88,7 +87,12 @@ class Application extends React.Component {
 			const note = {
 				title: title,
 				body: "",
-				lastModified: "...",
+				lastModified: currentDate.getHours() + ":"
+				+ currentDate.getMinutes() + ":"
+				+ currentDate.getSeconds() + " "
+				+ currentDate.getDate() + "/"
+		        + (currentDate.getMonth()+1)  + "/"
+		        + currentDate.getFullYear(),
 				id: newNoteIndex,
 			};
 			let notes = [...this.state.notes, note];
