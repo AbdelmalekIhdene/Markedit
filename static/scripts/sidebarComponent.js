@@ -54,6 +54,7 @@ class SidebarComponent extends React.Component {
 								selectedNoteIndex={selectedNoteIndex}
 								SelectNote={this.SelectNote}
 								DeleteNote={this.DeleteNote}></SidebarItemComponent>
+								<Divider></Divider>
 							</article>
 						)
 					}) : null

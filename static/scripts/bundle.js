@@ -106923,6 +106923,8 @@ var _sidebarComponent = _interopRequireDefault(require("./sidebarComponent"));
 
 var _editorComponent = _interopRequireDefault(require("./editorComponent"));
 
+var _homepageComponent = _interopRequireDefault(require("./homepageComponent"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -107165,8 +107167,7 @@ function (_React$Component) {
         selectedNoteIndex: this.state.selectedNoteIndex,
         notes: this.state.notes,
         UpdateNote: this.UpdateNote
-      }) : null // TO-DO: Show A Div Instead!
-      );
+      }) : _react["default"].createElement(_homepageComponent["default"], null));
     }
   }]);
 
@@ -107176,7 +107177,7 @@ function (_React$Component) {
 var _default = Application;
 exports["default"] = _default;
 
-},{"./editorComponent":623,"./sidebarComponent":627,"react":613}],623:[function(require,module,exports){
+},{"./editorComponent":623,"./homepageComponent":626,"./sidebarComponent":628,"react":613}],623:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -107409,6 +107410,66 @@ function LogAndReturn(prefix, value) {
 },{}],626:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var HomepageComponent =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(HomepageComponent, _React$Component);
+
+  function HomepageComponent() {
+    _classCallCheck(this, HomepageComponent);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(HomepageComponent).apply(this, arguments));
+  }
+
+  _createClass(HomepageComponent, [{
+    key: "render",
+    value: function render() {
+      return _react["default"].createElement("section", {
+        className: "outerContainer"
+      }, _react["default"].createElement("section", {
+        className: "centeredContainer"
+      }, _react["default"].createElement("h2", null, "Welcome to Markedit"), _react["default"].createElement("article", null, _react["default"].createElement("p", null, "Cobbled together in one week for personal resume and powered by ", _react["default"].createElement("b", null, "ReactJS"), ", ", _react["default"].createElement("b", null, "Quill"), " & ", _react["default"].createElement("b", null, "MaterialUI")), _react["default"].createElement("p", null, "A dynamic fully-featured note editor served by a ", _react["default"].createElement("b", null, "Golang"), " REST API, ", _react["default"].createElement("em", null, "try it out by creating a new note!"))), _react["default"].createElement("h1", null, "Cool Features:"), _react["default"].createElement("ul", null, _react["default"].createElement("li", null, "100% client-side and thus easily scalable application"), _react["default"].createElement("li", null, "Persistent notes through local storage"), _react["default"].createElement("li", null, "Bundled together with ", _react["default"].createElement("b", null, "Browserify/Babelify")), _react["default"].createElement("li", null, "Fork it on my ", _react["default"].createElement("b", null, "Github"), " [", _react["default"].createElement("a", {
+        href: "https://github.com/AbdelmalekIhdene/markedit"
+      }, "AbdelmalekIhdene/Markedit"), "]"))));
+    }
+  }]);
+
+  return HomepageComponent;
+}(_react["default"].Component);
+
+var _default = HomepageComponent;
+exports["default"] = _default;
+
+},{"react":613}],627:[function(require,module,exports){
+"use strict";
+
 var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
@@ -107419,7 +107480,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 _reactDom["default"].render(_react["default"].createElement(_application["default"], null), document.getElementById("application"));
 
-},{"./application":622,"react":613,"react-dom":592}],627:[function(require,module,exports){
+},{"./application":622,"react":613,"react-dom":592}],628:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -107551,7 +107612,7 @@ function (_React$Component) {
           selectedNoteIndex: selectedNoteIndex,
           SelectNote: _this2.SelectNote,
           DeleteNote: _this2.DeleteNote
-        }));
+        }), _react["default"].createElement(_core.Divider, null));
       }) : null));
     }
   }]);
@@ -107563,7 +107624,7 @@ var _default = (0, _styles.withStyles)(_sidebarStyles["default"])(SidebarCompone
 
 exports["default"] = _default;
 
-},{"./sidebarItemComponent":628,"./sidebarStyles":630,"@material-ui/core":301,"@material-ui/core/List":156,"@material-ui/core/styles":329,"react":613}],628:[function(require,module,exports){
+},{"./sidebarItemComponent":629,"./sidebarStyles":631,"@material-ui/core":301,"@material-ui/core/List":156,"@material-ui/core/styles":329,"react":613}],629:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -107684,7 +107745,7 @@ var _default = (0, _styles.withStyles)(_sidebarItemStyles["default"])(SidebarIte
 
 exports["default"] = _default;
 
-},{"./helpers":625,"./sidebarItemStyles":629,"@material-ui/core/ListItem":158,"@material-ui/core/ListItemText":166,"@material-ui/core/styles":329,"@material-ui/icons/Delete":363,"react":613}],629:[function(require,module,exports){
+},{"./helpers":625,"./sidebarItemStyles":630,"@material-ui/core/ListItem":158,"@material-ui/core/ListItemText":166,"@material-ui/core/styles":329,"@material-ui/icons/Delete":363,"react":613}],630:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -107714,7 +107775,7 @@ var Styles = function Styles(theme) {
 var _default = Styles;
 exports["default"] = _default;
 
-},{}],630:[function(require,module,exports){
+},{}],631:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -107796,4 +107857,4 @@ var Styles = function Styles(theme) {
 var _default = Styles;
 exports["default"] = _default;
 
-},{}]},{},[626]);
+},{}]},{},[627]);

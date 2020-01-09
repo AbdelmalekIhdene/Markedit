@@ -19,6 +19,7 @@ body {
 	border-bottom-right-radius: 0.5em;
 	background: #fefcfc;
 	font-size: 16px;
+	line-height: 2.0;
 }
 html, body {
 	height: 100%;
@@ -60,17 +61,50 @@ html, body {
 	padding-top: 0px;
 }
 .MuiListItem-root.Mui-selected {
-  background-color: #d4d8e8 !important;
+	background-color: #d4d8e8 !important;
 }
 .no-note-selected {
-  font-size: 48px;
-  position: absolute;
-  top: 50px;
-  left: calc(50% - 165px);
+	font-size: 48px;
+	position: absolute;
+	top: 50px;
+	left: calc(50% - 165px);
 }
 .lastModified {
 	padding-top: 5px;
 	padding-bottom: 5px;
-	font-size: 14px;
+	font-size: 12px;
 	color: rgba(0, 0, 0, 0.54);
+}
+.outerContainer {
+	display: flex;
+	height: calc(100% - 40px);
+	background: #fefcfc;
+	border: 1px solid #ccc;
+	border-radius: 0.5em;
+	justify-content: center;
+	align-items: center;
+}
+.centeredContainer {
+	color: #12283A;
+	text-align: center;
+	width: 550px;
+	font-size: 18px;
+	line-height: 1.5;
+}
+.centeredContainer h2 {
+	font-weight: 800;
+	font-size: 24px;
+}
+.centeredContainer article {
+	padding: 15px;
+}
+.centeredContainer h1 {
+	font-weight: 800;
+	padding-bottom: 5px;
+}
+.centeredContainer a {
+	text-decoration: none;
+}
+.centeredContainer li {
+	text-align: center;
 }

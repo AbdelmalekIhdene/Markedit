@@ -1,6 +1,7 @@
 import React from "react";
 import SidebarComponent from "./sidebarComponent";
 import EditorComponent from "./editorComponent";
+import HomepageComponent from "./homepageComponent";
 class Application extends React.Component {
 	constructor(props) {
 		super();
@@ -25,8 +26,8 @@ class Application extends React.Component {
 				selectedNote={this.state.selectedNote}
 				selectedNoteIndex={this.state.selectedNoteIndex}
 				notes={this.state.notes}
-				UpdateNote={this.UpdateNote}></EditorComponent> : null
-				// TO-DO: Show A Div Instead!
+				UpdateNote={this.UpdateNote}></EditorComponent> :
+				<HomepageComponent></HomepageComponent>
 			}
 			</section>
 		);
