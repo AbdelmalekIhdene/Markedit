@@ -107069,7 +107069,11 @@ function (_React$Component) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                console.log("What?!");
+                if (!(title.length > 0)) {
+                  _context3.next = 10;
+                  break;
+                }
+
                 newNoteIndex = _this.state.notes.length;
                 note = {
                   title: title,

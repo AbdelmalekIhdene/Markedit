@@ -63,19 +63,20 @@ class Application extends React.Component {
 		console.log(localStorage.getItem("markedit-notes"));
 	}
 	NewNote = async(title) => {
-		console.log("What?!");
-		const newNoteIndex = this.state.notes.length;
-		const note = {
-			title: title,
-			body: "",
-			id: newNoteIndex
-		};
-		let notes = [...this.state.notes, note];
-		await this.setState({notes: notes});
-		this.setState({selectedNote: this.state.notes[newNoteIndex], selectedNoteIndex: newNoteIndex});
-		console.log(notes);
-		localStorage.setItem("markedit-notes", JSON.stringify(notes));
-		console.log(localStorage.getItem("markedit-notes"));
+		if(title.length > 0) {
+			const newNoteIndex = this.state.notes.length;
+			const note = {
+				title: title,
+				body: "",
+				id: newNoteIndex
+			};
+			let notes = [...this.state.notes, note];
+			await this.setState({notes: notes});
+			this.setState({selectedNote: this.state.notes[newNoteIndex], selectedNoteIndex: newNoteIndex});
+			console.log(notes);
+			localStorage.setItem("markedit-notes", JSON.stringify(notes));
+			console.log(localStorage.getItem("markedit-notes"));
+		}
 	}
 }
 export default Application;
