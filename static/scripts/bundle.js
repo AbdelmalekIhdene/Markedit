@@ -107537,7 +107537,7 @@ function (_React$Component) {
         onClick: this.NewNote,
         disableRipple: true
       }, "Submit Note")) : null, _react["default"].createElement(_List["default"], {
-        disablePadding: "true"
+        disablePadding: true
       }, notes ? notes.map(function (note, index) {
         return _react["default"].createElement("article", {
           key: index
