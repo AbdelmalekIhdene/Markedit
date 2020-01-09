@@ -106991,7 +106991,7 @@ function (_React$Component) {
               });
 
             case 4:
-              if (_this.state.notes === null) {
+              if (_this.state.notes == null) {
                 _this.setState({
                   notes: [{
                     title: "My First Note",
@@ -106999,6 +106999,8 @@ function (_React$Component) {
                     id: 0
                   }]
                 });
+              } else if (_this.state.notes.length > 0) {
+                _this.SelectNote(_this.state.notes[0], 0);
               }
 
             case 5:
@@ -107026,10 +107028,40 @@ function (_React$Component) {
       var _ref2 = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee2(note) {
+        var noteIndex, notes, i;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                noteIndex = note.id;
+                notes = _toConsumableArray(_this.state.notes.filter(function (n) {
+                  return n.id !== noteIndex;
+                }));
+
+                for (i = 0; i < notes.length; i += 1) {
+                  if (notes[i].id > 0 && notes[i].id > noteIndex) notes[i].id = notes[i].id - 1;
+                }
+
+                localStorage.setItem("markedit-notes", JSON.stringify(notes));
+                _context2.next = 6;
+                return _this.setState({
+                  notes: notes
+                });
+
+              case 6:
+                console.log(_this.state.notes);
+
+                if (_this.state.selectedNoteIndex === noteIndex) {
+                  _this.setState({
+                    selectedNoteIndex: null,
+                    selectedNote: null
+                  }); // The currently selected note gets shifted down
+
+                } else if (_this.state.selectedNoteIndex > noteIndex) {
+                  _this.SelectNote(_this.state.notes[_this.state.selectedNoteIndex - 1], _this.state.selectedNoteIndex - 1);
+                }
+
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -107588,7 +107620,7 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "DeleteNote", function (note) {
-      if (confirm("Please confirm the deletion of note '" + note.title + "'")) {
+      if (confirm("Please confirm the deletion of note \"" + note.title + "\"")) {
         _this.props.DeleteNote(note);
       }
     });

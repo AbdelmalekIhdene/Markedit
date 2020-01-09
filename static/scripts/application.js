@@ -35,7 +35,7 @@ class Application extends React.Component {
 		console.log(JSON.parse(localStorage.getItem("markedit-notes")));
 		// We must wait for this.setState to finish before checking for null
 		await this.setState({notes: JSON.parse(localStorage.getItem("markedit-notes"))});
-		if(this.state.notes === null) {
+		if(this.state.notes == null) {
 			this.setState({notes: [
 				{
 					title: "My First Note",
@@ -43,6 +43,8 @@ class Application extends React.Component {
 					id: 0
 				},
 			]});
+		} else if(this.state.notes.length > 0) {
+			this.SelectNote(this.state.notes[0], 0);
 		}
 	}
 	componentWillUnmount = () => {
@@ -52,11 +54,26 @@ class Application extends React.Component {
 		this.setState({selectedNoteIndex: index, selectedNote: note});
 	}
 	DeleteNote = async(note) => {
-		// TODO: Write this function assuming that id is the index of the note inside notes
+		const noteIndex = note.id;
+		let notes = [...this.state.notes.filter(n => n.id !== noteIndex)];
+		var i;
+		for(i = 0; i < notes.length; i += 1) {
+			if(notes[i].id > 0 && notes[i].id > noteIndex) notes[i].id = notes[i].id - 1;
+		}
+		localStorage.setItem("markedit-notes", JSON.stringify(notes));
+		await this.setState({notes: notes});
+		console.log(this.state.notes);
+		if(this.state.selectedNoteIndex === noteIndex) {
+			this.setState({selectedNoteIndex: null, selectedNote: null});
+		// The currently selected note gets shifted down
+		} else if(this.state.selectedNoteIndex > noteIndex) {
+			this.SelectNote(this.state.notes[this.state.selectedNoteIndex - 1],
+			this.state.selectedNoteIndex - 1);
+		}
 	}
 	UpdateNote = (note, id) => {
 		let notes = [...this.state.notes];
-		notes[id] = { ...note, id };
+		notes[id] = {...note, id};
 		this.setState({notes: notes});
 		console.log(notes);
 		localStorage.setItem("markedit-notes", JSON.stringify(notes));
