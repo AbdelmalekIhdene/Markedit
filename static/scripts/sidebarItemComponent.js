@@ -18,6 +18,7 @@ class SidebarItemComponent extends React.Component {
 					<section
 					className={classes.textSection}
 					onClick={() => this.SelectNote(note, index)}>
+						<p className="lastModified">Last Modified: {note.lastModified}</p>
 						<ListItemText
 						primary={note.title}
 						// This is not optimal at all, but oh well ¯\_(ツ)_/¯

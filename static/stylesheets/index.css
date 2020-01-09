@@ -57,7 +57,7 @@ html, body {
 	border-bottom-right-radius: 0.5em;
 }
 .MuiListItemText-root {
-	/* background-color: red !important; */
+	padding-top: 0px;
 }
 .MuiListItem-root.Mui-selected {
   background-color: #d4d8e8 !important;
@@ -67,4 +67,9 @@ html, body {
   position: absolute;
   top: 50px;
   left: calc(50% - 165px);
+}
+.lastModified {
+	padding-top: 5px;
+	font-size: 11px;
+	color: rgba(0, 0, 0, 0.54);
 }

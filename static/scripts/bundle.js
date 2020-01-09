@@ -107073,6 +107073,8 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "UpdateNote", function (note, id) {
       var notes = _toConsumableArray(_this.state.notes);
 
+      var currentDate = new Date();
+      note.lastModified = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds() + " " + currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
       notes[id] = _objectSpread({}, note, {
         id: id
       });
@@ -107106,6 +107108,7 @@ function (_React$Component) {
                 note = {
                   title: title,
                   body: "",
+                  lastModified: "...",
                   id: newNoteIndex
                 };
                 notes = [].concat(_toConsumableArray(_this.state.notes), [note]);
@@ -107656,7 +107659,9 @@ function (_React$Component) {
         onClick: function onClick() {
           return _this2.SelectNote(note, index);
         }
-      }, _react["default"].createElement(_ListItemText["default"], {
+      }, _react["default"].createElement("p", {
+        className: "lastModified"
+      }, "Last Modified: ", note.lastModified), _react["default"].createElement(_ListItemText["default"], {
         primary: note.title // This is not optimal at all, but oh well ¯\_(ツ)_/¯
         // Maybe in the future, when I learn a bit more about Javascript,
         // I'll come and fix this mess

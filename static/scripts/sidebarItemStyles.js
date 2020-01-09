@@ -12,6 +12,6 @@ const Styles = theme => ({
 		"&:hover": {
 			color: "red"
 		}
-	}
+	},
 });
 export default Styles;
