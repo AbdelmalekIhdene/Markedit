@@ -14,10 +14,26 @@ class EditorComponent extends React.Component {
 			id: ""
 		};
 	}
+	componentDidMount = () => {
+		this.setState({
+			text: this.props.selectedNote.body,
+			title: this.props.selectedNote.title,
+			id: this.props.selectedNote.id
+		});
+	}
+	componentDidUpdate = () => {
+		if(this.props.selectedNote.id !== this.state.id) {
+			this.setState({
+				text: this.props.selectedNote.body,
+				title: this.props.selectedNote.title,
+				id: this.props.selectedNote.id
+			});
+		}
+	}
 	render() {
 		const { classes } = this.props;
 		return (
-			<section className="classes.editorContainer">
+			<section className={classes.editorContainer}>
 				<ReactQuill value={this.state.text}
 				onChange={this.UpdateBody}></ReactQuill>
 			</section>
@@ -32,7 +48,10 @@ class EditorComponent extends React.Component {
 	// If an interval of time passes without Update
 	// being cancelled, localStorage is updated
 	Update = Debounce(() => {
-		console.log("LocalStorage Updated");
-	}, 1500);
+		this.props.UpdateNote({
+			title: this.state.title,
+			body: this.state.text
+		}, this.state.id);
+	}, 500);
 }
 export default withStyles(Styles)(EditorComponent);

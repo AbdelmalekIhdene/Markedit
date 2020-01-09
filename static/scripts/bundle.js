@@ -106927,6 +106927,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -106957,15 +106973,137 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Application).call(this));
 
-    _defineProperty(_assertThisInitialized(_this), "componentDidMount", function () {
-      _this.setState({
-        notes: localStorage.getItem("markedit-notes")
-      });
-    });
+    _defineProperty(_assertThisInitialized(_this), "componentDidMount",
+    /*#__PURE__*/
+    _asyncToGenerator(
+    /*#__PURE__*/
+    regeneratorRuntime.mark(function _callee() {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              console.log(localStorage.getItem("markedit-notes"));
+              console.log(JSON.parse(localStorage.getItem("markedit-notes"))); // We must wait for this.setState to finish before checking for null
+
+              _context.next = 4;
+              return _this.setState({
+                notes: JSON.parse(localStorage.getItem("markedit-notes"))
+              });
+
+            case 4:
+              if (_this.state.notes === null) {
+                _this.setState({
+                  notes: [{
+                    title: "My First Note",
+                    body: "<h1>Hello, World!</h1>",
+                    id: 0
+                  }]
+                });
+              }
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })));
 
     _defineProperty(_assertThisInitialized(_this), "componentWillUnmount", function () {
       localStorage.setItem("markedit-notes", JSON.stringify(_this.state.notes));
     });
+
+    _defineProperty(_assertThisInitialized(_this), "SelectNote", function (note, index) {
+      _this.setState({
+        selectedNoteIndex: index,
+        selectedNote: note
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "DeleteNote",
+    /*#__PURE__*/
+    function () {
+      var _ref2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2(note) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
+
+    _defineProperty(_assertThisInitialized(_this), "UpdateNote", function (note, id) {
+      var notes = _toConsumableArray(_this.state.notes);
+
+      notes[id] = _objectSpread({}, note, {
+        id: id
+      });
+
+      _this.setState({
+        notes: notes
+      });
+
+      console.log(notes);
+      localStorage.setItem("markedit-notes", JSON.stringify(notes));
+      console.log(localStorage.getItem("markedit-notes"));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "NewNote",
+    /*#__PURE__*/
+    function () {
+      var _ref3 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3(title) {
+        var newNoteIndex, note, notes;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                console.log("What?!");
+                newNoteIndex = _this.state.notes.length;
+                note = {
+                  title: title,
+                  body: "",
+                  id: newNoteIndex
+                };
+                notes = [].concat(_toConsumableArray(_this.state.notes), [note]);
+                _context3.next = 6;
+                return _this.setState({
+                  notes: notes
+                });
+
+              case 6:
+                _this.setState({
+                  selectedNote: _this.state.notes[newNoteIndex],
+                  selectedNoteIndex: newNoteIndex
+                });
+
+                console.log(notes);
+                localStorage.setItem("markedit-notes", JSON.stringify(notes));
+                console.log(localStorage.getItem("markedit-notes"));
+
+              case 10:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function (_x2) {
+        return _ref3.apply(this, arguments);
+      };
+    }());
 
     _this.state = {
       selectedNoteIndex: null,
@@ -106982,8 +107120,16 @@ function (_React$Component) {
         className: "container"
       }, _react["default"].createElement(_sidebarComponent["default"], {
         selectedNoteIndex: this.state.selectedNoteIndex,
-        notes: this.state.notes
-      }), _react["default"].createElement(_editorComponent["default"], null));
+        notes: this.state.notes,
+        SelectNote: this.SelectNote,
+        DeleteNote: this.DeleteNote,
+        NewNote: this.NewNote
+      }), this.state.selectedNote ? _react["default"].createElement(_editorComponent["default"], {
+        selectedNote: this.state.selectedNote,
+        selectedNoteIndex: this.state.selectedNoteIndex,
+        notes: this.state.notes,
+        UpdateNote: this.UpdateNote
+      }) : null);
     }
   }]);
 
@@ -107053,6 +107199,24 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EditorComponent).call(this, props));
 
+    _defineProperty(_assertThisInitialized(_this), "componentDidMount", function () {
+      _this.setState({
+        text: _this.props.selectedNote.body,
+        title: _this.props.selectedNote.title,
+        id: _this.props.selectedNote.id
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "componentDidUpdate", function () {
+      if (_this.props.selectedNote.id !== _this.state.id) {
+        _this.setState({
+          text: _this.props.selectedNote.body,
+          title: _this.props.selectedNote.title,
+          id: _this.props.selectedNote.id
+        });
+      }
+    });
+
     _defineProperty(_assertThisInitialized(_this), "UpdateBody",
     /*#__PURE__*/
     function () {
@@ -107085,8 +107249,11 @@ function (_React$Component) {
     }());
 
     _defineProperty(_assertThisInitialized(_this), "Update", (0, _helpers["default"])(function () {
-      console.log("LocalStorage Updated");
-    }, 1500));
+      _this.props.UpdateNote({
+        title: _this.state.title,
+        body: _this.state.text
+      }, _this.state.id);
+    }, 500));
 
     _this.state = {
       text: "",
@@ -107101,7 +107268,7 @@ function (_React$Component) {
     value: function render() {
       var classes = this.props.classes;
       return _react["default"].createElement("section", {
-        className: "classes.editorContainer"
+        className: classes.editorContainer
       }, _react["default"].createElement(_reactQuill["default"], {
         value: this.state.text,
         onChange: this.UpdateBody
@@ -107174,6 +107341,9 @@ exports.RemoveHTMLTags = RemoveHTMLTags;
 
 // Debounce ensures that the web application does not
 // save to local storage every time the user stops typing
+// I honestly have no clue how this works, but it works
+// I should have a library that does it for me, atleast that way,
+// I can guarantee that the function doesn't break someday for no reason
 function Debounce(a, b, c) {
   var d, e;
   return function () {
@@ -107190,7 +107360,7 @@ function Debounce(a, b, c) {
 
 
 function RemoveHTMLTags(string) {
-  return str.replace(/<[^>]*?/gm, "");
+  return string.replace(/<[^>]*>?/gm, "");
 }
 
 },{}],626:[function(require,module,exports){
@@ -107278,7 +107448,20 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "NewNote", function () {
-      console.log(_this.state);
+      _this.props.NewNote(_this.state.title);
+
+      _this.setState({
+        title: null,
+        addingNote: false
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "SelectNote", function (note, index) {
+      _this.props.SelectNote(note, index);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "DeleteNote", function (note) {
+      _this.props.DeleteNote(note);
     });
 
     _this.state = {
@@ -107312,7 +107495,17 @@ function (_React$Component) {
       }), _react["default"].createElement(_core.Button, {
         className: classes.newNoteSubmitBtn,
         onClick: this.NewNote
-      }, "Submit Note")) : null);
+      }, "Submit Note")) : null, _react["default"].createElement(_List["default"], null, notes ? notes.map(function (note, index) {
+        return _react["default"].createElement("article", {
+          key: index
+        }, _react["default"].createElement(_sidebarItemComponent["default"], {
+          note: note,
+          index: index,
+          selectedNoteIndex: selectedNoteIndex,
+          SelectNote: _this2.SelectNote,
+          DeleteNote: _this2.DeleteNote
+        }), _react["default"].createElement(_core.Divider, null));
+      }) : null));
     }
   }]);
 
@@ -107337,6 +107530,8 @@ var _styles = require("@material-ui/core/styles");
 
 var _sidebarItemStyles = _interopRequireDefault(require("./sidebarItemStyles"));
 
+var _ListItem = _interopRequireDefault(require("@material-ui/core/ListItem"));
+
 var _ListItemText = _interopRequireDefault(require("@material-ui/core/ListItemText"));
 
 var _Delete = _interopRequireDefault(require("@material-ui/icons/Delete"));
@@ -107355,29 +107550,81 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+// SidebarItemComponent is a functional component since it doesn't have a state
 var SidebarItemComponent =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(SidebarItemComponent, _React$Component);
 
   function SidebarItemComponent() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, SidebarItemComponent);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SidebarItemComponent).call(this));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(SidebarItemComponent)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "SelectNote", function (note, index) {
+      _this.props.SelectNote(note, index);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "DeleteNote", function (note) {
+      if (confirm("Please confirm the deletion of note '" + note.title + "'")) {
+        _this.props.DeleteNote(note);
+      }
+    });
+
+    return _this;
   }
 
   _createClass(SidebarItemComponent, [{
     key: "render",
     value: function render() {
-      return _react["default"].createElement("h1", null, "Hello, SidebarItem!");
+      var _this2 = this;
+
+      var _this$props = this.props,
+          index = _this$props.index,
+          note = _this$props.note,
+          classes = _this$props.classes,
+          selectedNoteIndex = _this$props.selectedNoteIndex;
+      return _react["default"].createElement("article", {
+        key: index
+      }, _react["default"].createElement(_ListItem["default"], {
+        className: classes.ListItem,
+        selected: selectedNoteIndex === index,
+        alignItems: "flex-start"
+      }, _react["default"].createElement("section", {
+        className: classes.textSection,
+        onClick: function onClick() {
+          return _this2.SelectNote(note, index);
+        }
+      }, _react["default"].createElement(_ListItemText["default"], {
+        primary: note.title // This is not optimal at all, but oh well ¯\_(ツ)_/¯
+        // Maybe in the future, when I learn a bit more about Javascript,
+        // I'll come and fix this mess
+        ,
+        secondary: (0, _helpers.RemoveHTMLTags)((0, _helpers.RemoveHTMLTags)(note.body).length > 30 ? (0, _helpers.RemoveHTMLTags)(note.body).substring(0, 30) + "..." : note.body)
+      })), _react["default"].createElement(_Delete["default"], {
+        className: classes.deleteIcon,
+        onClick: function onClick() {
+          return _this2.DeleteNote(note);
+        }
+      })));
     }
   }]);
 
@@ -107388,7 +107635,7 @@ var _default = (0, _styles.withStyles)(_sidebarItemStyles["default"])(SidebarIte
 
 exports["default"] = _default;
 
-},{"./helpers":625,"./sidebarItemStyles":629,"@material-ui/core/ListItemText":166,"@material-ui/core/styles":329,"@material-ui/icons/Delete":363,"react":613}],629:[function(require,module,exports){
+},{"./helpers":625,"./sidebarItemStyles":629,"@material-ui/core/ListItem":158,"@material-ui/core/ListItemText":166,"@material-ui/core/styles":329,"@material-ui/icons/Delete":363,"react":613}],629:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

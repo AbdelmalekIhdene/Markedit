@@ -39,6 +39,24 @@ class SidebarComponent extends React.Component {
 					</section> :
 					null
 				}
+				<List>
+				{
+					notes ?
+					notes.map((note, index) => {
+						return (
+							<article key={index}>
+								<SidebarItemComponent
+								note={note}
+								index={index}
+								selectedNoteIndex={selectedNoteIndex}
+								SelectNote={this.SelectNote}
+								DeleteNote={this.DeleteNote}></SidebarItemComponent>
+								<Divider></Divider>
+							</article>
+						)
+					}) : null
+				}
+				</List>
 			</section>
 		);
 	}
@@ -51,7 +69,14 @@ class SidebarComponent extends React.Component {
 		this.setState({ title: title });
 	}
 	NewNote = () => {
-		// console.log(this.state);
+		this.props.NewNote(this.state.title);
+		this.setState({title: null, addingNote: false});
+	}
+	SelectNote = (note, index) => {
+		this.props.SelectNote(note, index);
+	}
+	DeleteNote = (note) => {
+		this.props.DeleteNote(note);
 	}
 }
 export default withStyles(Styles)(SidebarComponent);
