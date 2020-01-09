@@ -70,6 +70,7 @@ html, body {
 }
 .lastModified {
 	padding-top: 5px;
-	font-size: 12px;
+	padding-bottom: 5px;
+	font-size: 14px;
 	color: rgba(0, 0, 0, 0.54);
 }

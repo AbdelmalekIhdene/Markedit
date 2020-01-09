@@ -107094,30 +107094,31 @@ function (_React$Component) {
       var _ref3 = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee3(title) {
-        var newNoteIndex, note, notes;
+        var currentDate, newNoteIndex, note, notes;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 if (!(title.length > 0)) {
-                  _context3.next = 10;
+                  _context3.next = 11;
                   break;
                 }
 
+                currentDate = new Date();
                 newNoteIndex = _this.state.notes.length;
                 note = {
                   title: title,
                   body: "",
-                  lastModified: "...",
+                  lastModified: currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds() + " " + currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear(),
                   id: newNoteIndex
                 };
                 notes = [].concat(_toConsumableArray(_this.state.notes), [note]);
-                _context3.next = 6;
+                _context3.next = 7;
                 return _this.setState({
                   notes: notes
                 });
 
-              case 6:
+              case 7:
                 _this.setState({
                   selectedNote: _this.state.notes[newNoteIndex],
                   selectedNoteIndex: newNoteIndex
@@ -107127,7 +107128,7 @@ function (_React$Component) {
                 localStorage.setItem("markedit-notes", JSON.stringify(notes));
                 console.log(localStorage.getItem("markedit-notes"));
 
-              case 10:
+              case 11:
               case "end":
                 return _context3.stop();
             }

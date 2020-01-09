@@ -83,6 +83,7 @@ class Application extends React.Component {
 	}
 	NewNote = async(title) => {
 		if(title.length > 0) {
+			var currentDate = new Date();
 			const newNoteIndex = this.state.notes.length;
 			const note = {
 				title: title,
