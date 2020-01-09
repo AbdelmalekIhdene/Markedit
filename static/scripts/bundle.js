@@ -107331,7 +107331,7 @@ var Styles = function Styles(theme) {
       // height: "calc(100% - 35px)",
       position: "absolute",
       left: "0",
-      width: "290px",
+      width: "280px",
       boxShadow: "0px 0px 2px black"
     },
     titleInput: {
@@ -107347,14 +107347,14 @@ var Styles = function Styles(theme) {
     },
     editIcon: {
       position: "absolute",
-      left: "290px",
+      left: "280px",
       top: "12px",
       color: "white",
       width: "10",
       height: "10"
     },
     editorContainer: {
-      height: "calc(100% - 60px)",
+      height: "calc(100% - 80px)",
       boxSizing: "border-box"
     }
   };
@@ -107753,13 +107753,13 @@ var Styles = function Styles(theme) {
     },
     sidebarContainer: {
       marginTop: "0px",
-      width: "290px",
-      height: "calc(100% - 20px)",
+      width: "280px",
+      height: "calc(100% - 40px)",
       boxSizing: "border-box",
       "float": "left",
       overflowX: "hidden",
       overflowY: "hidden",
-      marginRight: "10px",
+      marginRight: "20px",
       borderRadius: "0.5em",
       border: "1px solid #ccc"
     },

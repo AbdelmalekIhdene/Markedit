@@ -4,7 +4,7 @@ body {
 }
 
 #application {
-	margin: 10px;
+	margin: 20px;
 }
 
 #application .ql-snow.ql-toolbar {
@@ -14,14 +14,11 @@ body {
 	border-top-right-radius: 0.5em;
 }
 
-#application .ql-editor {
-	/* height: 18em; */
-}
-
 #application .ql-container {
 	border-bottom-left-radius: 0.5em;
 	border-bottom-right-radius: 0.5em;
 	background: #fefcfc;
+	font-size: 16px;
 }
 html, body {
 	height: 100%;

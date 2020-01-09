@@ -4,7 +4,7 @@ const Styles = theme => ({
 		// height: "calc(100% - 35px)",
 		position: "absolute",
 		left: "0",
-		width: "290px",
+		width: "280px",
 		boxShadow: "0px 0px 2px black"
 	},
 	titleInput: {
@@ -20,14 +20,14 @@ const Styles = theme => ({
 	},
 	editIcon: {
 		position: "absolute",
-		left: "290px",
+		left: "280px",
 		top: "12px",
 		color: "white",
 		width: "10",
 		height: "10"
 	},
 	editorContainer: {
-		height: "calc(100% - 60px)",
+		height: "calc(100% - 80px)",
 		boxSizing: "border-box",
   	}
 });
