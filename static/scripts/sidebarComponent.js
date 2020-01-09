@@ -42,7 +42,7 @@ class SidebarComponent extends React.Component {
 					null
 				}
 				<List
-				disablePadding="true">
+				disablePadding={true}>
 				{
 					notes ?
 					notes.map((note, index) => {
