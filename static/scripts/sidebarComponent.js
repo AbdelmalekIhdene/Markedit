@@ -18,7 +18,8 @@ class SidebarComponent extends React.Component {
 			<section className={classes.sidebarContainer}>
 				<Button
 				onClick={this.NewNoteBtnClick}
-				className={classes.newNoteBtn}>
+				className={classes.newNoteBtn}
+				disableRipple={true}>
 				{
 					this.state.addingNote ?
 					"Cancel" :
@@ -29,17 +30,19 @@ class SidebarComponent extends React.Component {
 					this.state.addingNote ?
 					<section>
 						<input type="text"
-						className={classes.NewNoteInput}
+						className={classes.newNoteInput}
 						placeholder="Enter Note Title..."
 						onKeyUp={(event) => this.UpdateTitle(event.target.value)}>
 						</input>
 						<Button
 						className={classes.newNoteSubmitBtn}
-						onClick={this.NewNote}>Submit Note</Button>
+						onClick={this.NewNote}
+						disableRipple={true}>Submit Note</Button>
 					</section> :
 					null
 				}
-				<List>
+				<List
+				disablePadding="true">
 				{
 					notes ?
 					notes.map((note, index) => {
@@ -51,7 +54,6 @@ class SidebarComponent extends React.Component {
 								selectedNoteIndex={selectedNoteIndex}
 								SelectNote={this.SelectNote}
 								DeleteNote={this.DeleteNote}></SidebarItemComponent>
-								<Divider></Divider>
 							</article>
 						)
 					}) : null

@@ -26,6 +26,7 @@ class Application extends React.Component {
 				selectedNoteIndex={this.state.selectedNoteIndex}
 				notes={this.state.notes}
 				UpdateNote={this.UpdateNote}></EditorComponent> : null
+				// TO-DO: Show A Div Instead!
 			}
 			</section>
 		);
@@ -36,13 +37,7 @@ class Application extends React.Component {
 		// We must wait for this.setState to finish before checking for null
 		await this.setState({notes: JSON.parse(localStorage.getItem("markedit-notes"))});
 		if(this.state.notes == null) {
-			this.setState({notes: [
-				{
-					title: "My First Note",
-					body: "<h1>Hello, World!</h1>",
-					id: 0
-				},
-			]});
+			this.setState({notes: []});
 		} else if(this.state.notes.length > 0) {
 			this.SelectNote(this.state.notes[0], 0);
 		}

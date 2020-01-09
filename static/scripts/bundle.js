@@ -106993,11 +106993,7 @@ function (_React$Component) {
             case 4:
               if (_this.state.notes == null) {
                 _this.setState({
-                  notes: [{
-                    title: "My First Note",
-                    body: "<h1>Hello, World!</h1>",
-                    id: 0
-                  }]
+                  notes: []
                 });
               } else if (_this.state.notes.length > 0) {
                 _this.SelectNote(_this.state.notes[0], 0);
@@ -107165,7 +107161,8 @@ function (_React$Component) {
         selectedNoteIndex: this.state.selectedNoteIndex,
         notes: this.state.notes,
         UpdateNote: this.UpdateNote
-      }) : null);
+      }) : null // TO-DO: Show A Div Instead!
+      );
     }
   }]);
 
@@ -107289,7 +107286,7 @@ function (_React$Component) {
         title: _this.state.title,
         body: _this.state.text
       }, _this.state.id);
-    }, 500));
+    }, 200));
 
     _this.state = {
       text: "",
@@ -107331,10 +107328,10 @@ var Styles = function Styles(theme) {
   return {
     root: {
       backgroundColor: theme.palette.background.paper,
-      height: "calc(100% - 35px)",
+      // height: "calc(100% - 35px)",
       position: "absolute",
       left: "0",
-      width: "300px",
+      width: "290px",
       boxShadow: "0px 0px 2px black"
     },
     titleInput: {
@@ -107350,14 +107347,14 @@ var Styles = function Styles(theme) {
     },
     editIcon: {
       position: "absolute",
-      left: "310px",
+      left: "290px",
       top: "12px",
       color: "white",
       width: "10",
       height: "10"
     },
     editorContainer: {
-      height: "100%",
+      height: "calc(100% - 60px)",
       boxSizing: "border-box"
     }
   };
@@ -107374,6 +107371,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = Debounce;
 exports.RemoveHTMLTags = RemoveHTMLTags;
+exports.LogAndReturn = LogAndReturn;
 
 // Debounce ensures that the web application does not
 // save to local storage every time the user stops typing
@@ -107397,6 +107395,11 @@ function Debounce(a, b, c) {
 
 function RemoveHTMLTags(string) {
   return string.replace(/<[^>]*>?/gm, "");
+}
+
+function LogAndReturn(prefix, value) {
+  console.log(String(prefix) + " " + String(value));
+  return value;
 }
 
 },{}],626:[function(require,module,exports){
@@ -107520,18 +107523,22 @@ function (_React$Component) {
         className: classes.sidebarContainer
       }, _react["default"].createElement(_core.Button, {
         onClick: this.NewNoteBtnClick,
-        className: classes.newNoteBtn
+        className: classes.newNoteBtn,
+        disableRipple: true
       }, this.state.addingNote ? "Cancel" : "New Note"), this.state.addingNote ? _react["default"].createElement("section", null, _react["default"].createElement("input", {
         type: "text",
-        className: classes.NewNoteInput,
+        className: classes.newNoteInput,
         placeholder: "Enter Note Title...",
         onKeyUp: function onKeyUp(event) {
           return _this2.UpdateTitle(event.target.value);
         }
       }), _react["default"].createElement(_core.Button, {
         className: classes.newNoteSubmitBtn,
-        onClick: this.NewNote
-      }, "Submit Note")) : null, _react["default"].createElement(_List["default"], null, notes ? notes.map(function (note, index) {
+        onClick: this.NewNote,
+        disableRipple: true
+      }, "Submit Note")) : null, _react["default"].createElement(_List["default"], {
+        disablePadding: "true"
+      }, notes ? notes.map(function (note, index) {
         return _react["default"].createElement("article", {
           key: index
         }, _react["default"].createElement(_sidebarItemComponent["default"], {
@@ -107540,7 +107547,7 @@ function (_React$Component) {
           selectedNoteIndex: selectedNoteIndex,
           SelectNote: _this2.SelectNote,
           DeleteNote: _this2.DeleteNote
-        }), _react["default"].createElement(_core.Divider, null));
+        }));
       }) : null));
     }
   }]);
@@ -107654,7 +107661,7 @@ function (_React$Component) {
         // Maybe in the future, when I learn a bit more about Javascript,
         // I'll come and fix this mess
         ,
-        secondary: (0, _helpers.RemoveHTMLTags)((0, _helpers.RemoveHTMLTags)(note.body).length > 30 ? (0, _helpers.RemoveHTMLTags)(note.body).substring(0, 30) + "..." : note.body)
+        secondary: (0, _helpers.RemoveHTMLTags)(note.body).length > 25 ? (0, _helpers.RemoveHTMLTags)(note.body).substring(0, 25).trim() + "..." : (0, _helpers.RemoveHTMLTags)(note.body)
       })), _react["default"].createElement(_Delete["default"], {
         className: classes.deleteIcon,
         onClick: function onClick() {
@@ -107712,7 +107719,7 @@ exports["default"] = void 0;
 var Styles = function Styles(theme) {
   return {
     root: {
-      backgroundColor: theme.palette.background.paper,
+      // backgroundColor: theme.palette.background.paper,
       height: "calc(100% - 35px)",
       position: "absolute",
       left: "0",
@@ -107729,24 +107736,32 @@ var Styles = function Styles(theme) {
       right: "5px"
     },
     newNoteBtn: {
-      width: "100%",
+      width: "calc(100% + 1px)",
       height: "35px",
-      borderBottom: "1px solid black",
-      borderRadius: "0px",
+      // borderBottom: "1px solid black",
+      borderBottomLeftRadius: "0px",
+      borderBottomRightRadius: "0px",
       backgroundColor: "#29487d",
+      textTransform: "none",
       color: "white",
       "&:hover": {
+        backgroundColor: "#29487d"
+      },
+      "&:active": {
         backgroundColor: "#88a2ce"
       }
     },
     sidebarContainer: {
       marginTop: "0px",
-      width: "300px",
-      height: "100%",
+      width: "290px",
+      height: "calc(100% - 20px)",
       boxSizing: "border-box",
       "float": "left",
-      overflowY: "scroll",
-      overflowX: "hidden"
+      overflowX: "hidden",
+      overflowY: "hidden",
+      marginRight: "10px",
+      borderRadius: "0.5em",
+      border: "1px solid #ccc"
     },
     newNoteInput: {
       width: "100%",
@@ -107754,16 +107769,20 @@ var Styles = function Styles(theme) {
       height: "35px",
       outline: "none",
       border: "none",
-      paddingLeft: "5px",
-      "&:focus": {
-        outline: "2px solid rgba(81, 203, 238, 1)"
-      }
+      paddingLeft: "5px"
     },
     newNoteSubmitBtn: {
       width: "100%",
       backgroundColor: "#28787c",
       borderRadius: "0px",
-      color: "white"
+      color: "white",
+      textTransform: "none",
+      "&:hover": {
+        backgroundColor: "#28787c"
+      },
+      "&:active": {
+        backgroundColor: "#88a2ce"
+      }
     }
   };
 };

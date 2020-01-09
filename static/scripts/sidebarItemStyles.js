@@ -1,6 +1,6 @@
 const Styles = theme => ({
 	listItem: {
-		cursor: "pointer"
+		cursor: "pointer",
 	},
 	textSection: {
 		maxWidth: "85%"

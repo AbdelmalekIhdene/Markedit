@@ -4,7 +4,7 @@ import Styles from "./sidebarItemStyles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { RemoveHTMLTags } from "./helpers";
+import { LogAndReturn, RemoveHTMLTags } from "./helpers";
 // SidebarItemComponent is a functional component since it doesn't have a state
 class SidebarItemComponent extends React.Component {
 	render() {
@@ -23,9 +23,9 @@ class SidebarItemComponent extends React.Component {
 						// This is not optimal at all, but oh well ¯\_(ツ)_/¯
 						// Maybe in the future, when I learn a bit more about Javascript,
 						// I'll come and fix this mess
-						secondary={RemoveHTMLTags(
-						RemoveHTMLTags(note.body).length > 30 ?
-						RemoveHTMLTags(note.body).substring(0, 30) + "..." : note.body)}></ListItemText>
+						secondary={
+						RemoveHTMLTags(note.body).length > 25 ?
+						RemoveHTMLTags(note.body).substring(0, 25).trim() + "..." : RemoveHTMLTags(note.body)}></ListItemText>
 					</section>
 					<DeleteIcon
 					className={classes.deleteIcon}

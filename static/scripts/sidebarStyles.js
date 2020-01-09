@@ -1,6 +1,6 @@
 const Styles = theme => ({
 	root: {
-		backgroundColor: theme.palette.background.paper,
+		// backgroundColor: theme.palette.background.paper,
 		height: "calc(100% - 35px)",
 		position: "absolute",
 		left: "0",
@@ -17,24 +17,32 @@ const Styles = theme => ({
 		right: "5px"
 	},
 	newNoteBtn: {
-		width: "100%",
+		width: "calc(100% + 1px)",
 		height: "35px",
-		borderBottom: "1px solid black",
-		borderRadius: "0px",
+		// borderBottom: "1px solid black",
+		borderBottomLeftRadius: "0px",
+		borderBottomRightRadius: "0px",
 		backgroundColor: "#29487d",
+		textTransform: "none",
 		color: "white",
 		"&:hover": {
+			backgroundColor: "#29487d"
+		},
+		"&:active": {
 			backgroundColor: "#88a2ce"
 		}
 	},
 	sidebarContainer: {
 		marginTop: "0px",
-		width: "300px",
-		height: "100%",
+		width: "290px",
+		height: "calc(100% - 20px)",
 		boxSizing: "border-box",
 		float: "left",
-		overflowY: "scroll",
-		overflowX: "hidden"
+		overflowX: "hidden",
+		overflowY: "hidden",
+		marginRight: "10px",
+		borderRadius: "0.5em",
+		border: "1px solid #ccc"
 	},
 	newNoteInput: {
 		width: "100%",
@@ -43,15 +51,19 @@ const Styles = theme => ({
 		outline: "none",
 		border: "none",
 		paddingLeft: "5px",
-		"&:focus": {
-			outline: "2px solid rgba(81, 203, 238, 1)"
-		}
 	},
 	newNoteSubmitBtn: {
 		width: "100%",
 		backgroundColor: "#28787c",
 		borderRadius: "0px",
-		color: "white"
+		color: "white",
+		textTransform: "none",
+		"&:hover": {
+			backgroundColor: "#28787c"
+		},
+		"&:active": {
+			backgroundColor: "#88a2ce"
+		}
 	}
 });
 export default Styles;

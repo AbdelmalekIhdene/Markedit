@@ -19,3 +19,8 @@ export default function Debounce(a, b, c){
 export function RemoveHTMLTags(string) {
 	return string.replace(/<[^>]*>?/gm, "");
 }
+
+export function LogAndReturn(prefix, value) {
+	console.log(String(prefix) + " " + String(value));
+	return value;
+}

@@ -1,10 +1,10 @@
 const Styles = theme => ({
 	root: {
 		backgroundColor: theme.palette.background.paper,
-		height: "calc(100% - 35px)",
+		// height: "calc(100% - 35px)",
 		position: "absolute",
 		left: "0",
-		width: "300px",
+		width: "290px",
 		boxShadow: "0px 0px 2px black"
 	},
 	titleInput: {
@@ -20,15 +20,15 @@ const Styles = theme => ({
 	},
 	editIcon: {
 		position: "absolute",
-		left: "310px",
+		left: "290px",
 		top: "12px",
 		color: "white",
 		width: "10",
 		height: "10"
 	},
 	editorContainer: {
-		height: "100%",
-		boxSizing: "border-box"
-  }
+		height: "calc(100% - 60px)",
+		boxSizing: "border-box",
+  	}
 });
 export default Styles;
